@@ -5757,7 +5757,980 @@
     // Initialize on page load
     window.addEventListener('load', initKinderJoy);
 </script>
+    <!-- ==================== -->
+<!-- ICE CREAM CORNER SECTION -->
+<!-- ==================== -->
+<section class="icecream-section" style="
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #FFF0F5 0%, #F8F8FF 100%);
+    text-align: center;
+    position: relative;
+    border-radius: 30px;
+    margin: 40px 20px;
+    border: 3px solid #FFB6C1;
+    box-shadow: 0 20px 60px rgba(255, 182, 193, 0.2);
+">
+    <!-- Animated Ice Cream Background -->
+    <div class="icecream-bg" style="
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.1;
+    ">
+        <div style="position: absolute; top: 10%; left: 5%; font-size: 2rem; animation: float 6s infinite;">🍦</div>
+        <div style="position: absolute; top: 25%; right: 8%; font-size: 1.8rem; animation: float 8s infinite reverse;">🍨</div>
+        <div style="position: absolute; bottom: 20%; left: 10%; font-size: 2.2rem; animation: float 7s infinite 1s;">🧁</div>
+        <div style="position: absolute; bottom: 30%; right: 5%; font-size: 1.5rem; animation: float 9s infinite 0.5s;">🍭</div>
+    </div>
+    
+    <div style="position: relative; z-index: 2;">
+        <h2 class="section-title" style="
+            color: #FF8E9E;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        ">
+            <i class="fas fa-ice-cream"></i> Our Ice Cream Corner 🍦
+        </h2>
         
+        <p style="color: #B0A7D8; font-size: 1.2rem; max-width: 800px; margin: 0 auto 50px; line-height: 1.6;">
+            <i class="fas fa-heart"></i> "We'll meet and eat from the same ice cream!" - Our Sweet Promise 😭💕
+            <i class="fas fa-heart"></i>
+        </p>
+        
+        <!-- Ice Cream Shop -->
+        <div class="shop-container" style="
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            border: 4px solid #FFB6C1;
+            box-shadow: 0 30px 80px rgba(255, 182, 193, 0.3);
+        ">
+            <!-- Couple Ice Cream Scene -->
+            <div class="couple-scene" style="
+                background: linear-gradient(135deg, #FFF8F8, #FFFFFF);
+                border-radius: 25px;
+                padding: 40px;
+                margin-bottom: 40px;
+                border: 3px solid #FFD1DC;
+                position: relative;
+                min-height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            ">
+                <!-- Table -->
+                <div class="icecream-table" style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 80%;
+                    height: 60px;
+                    background: #FFE5B4;
+                    border-radius: 20px 20px 0 0;
+                    border: 3px solid #FFD1DC;
+                "></div>
+                
+                <!-- Single Ice Cream -->
+                <div class="shared-icecream" id="sharedIceCream" style="
+                    position: absolute;
+                    bottom: 60px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 80px;
+                    height: 120px;
+                    background: #FFD1DC;
+                    border-radius: 40px 40px 0 0;
+                    border: 3px solid #FFB6C1;
+                ">
+                    <div class="scoop" id="iceCreamScoop" style="
+                        position: absolute;
+                        top: -40px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 100px;
+                        height: 100px;
+                        background: #FFB6C1;
+                        border-radius: 50%;
+                        border: 3px solid #FF8E9E;
+                    "></div>
+                </div>
+                
+                <!-- Sarthak -->
+                <div class="person sarthak" style="
+                    position: absolute;
+                    bottom: 60px;
+                    left: 30%;
+                    text-align: center;
+                ">
+                    <div style="font-size: 3rem;">👨</div>
+                    <div style="color: #FF8E9E; font-weight: bold; margin-top: 10px;">Sarthak</div>
+                </div>
+                
+                <!-- Saanvi -->
+                <div class="person saanvi" style="
+                    position: absolute;
+                    bottom: 60px;
+                    right: 30%;
+                    text-align: center;
+                ">
+                    <div style="font-size: 3rem;">👩</div>
+                    <div style="color: #FF8E9E; font-weight: bold; margin-top: 10px;">Saanvi</div>
+                </div>
+                
+                <!-- Heart Between -->
+                <div class="shared-heart" style="
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 3rem;
+                    color: #FF8E9E;
+                    animation: heartbeat 1.5s infinite;
+                ">❤️</div>
+                
+                
+            
+            
+            <!-- Ice Cream Builder -->
+            <div class="builder-section" style="margin-bottom: 40px;">
+                <h3 style="color: #FF8E9E; margin-bottom: 30px; font-size: 1.8rem;">
+                    <i class="fas fa-wand-magic-sparkles"></i> Build Our Shared Ice Cream
+                </h3>
+                
+                <!-- Flavor Selection -->
+                <div class="flavor-selection" style="margin-bottom: 30px;">
+                    <h4 style="color: #D8A7B1; margin-bottom: 20px;">
+                        <i class="fas fa-palette"></i> Choose Our Flavor
+                    </h4>
+                    
+                    <div class="flavors-grid" style="
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                        gap: 15px;
+                        margin-bottom: 20px;
+                    ">
+                        <div class="flavor-option" onclick="selectIceCreamFlavor('strawberry')" style="
+                            background: linear-gradient(135deg, #FFD1DC, #FFB6C1);
+                            padding: 20px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            border: 2px solid #FFB6C1;
+                            color: #5D5D5D;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🍓</div>
+                            <div style="font-weight: bold; color: #FF8E9E;">Strawberry Love</div>
+                        </div>
+                        
+                        <div class="flavor-option" onclick="selectIceCreamFlavor('chocolate')" style="
+                            background: linear-gradient(135deg, #D2B48C, #8B4513);
+                            padding: 20px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            border: 2px solid #8B4513;
+                            color: white;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🍫</div>
+                            <div style="font-weight: bold; color: #FFE5B4;">Chocolate Dreams</div>
+                        </div>
+                        
+                        <div class="flavor-option" onclick="selectIceCreamFlavor('vanilla')" style="
+                            background: linear-gradient(135deg, #FFF8E7, #FFE5B4);
+                            padding: 20px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            border: 2px solid #FFE5B4;
+                            color: #5D5D5D;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🍦</div>
+                            <div style="font-weight: bold; color: #D2691E;">Vanilla Kisses</div>
+                        </div>
+                        
+                        <div class="flavor-option" onclick="selectIceCreamFlavor('mint')" style="
+                            background: linear-gradient(135deg, #B5EAD7, #98D7C2);
+                            padding: 20px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            border: 2px solid #98D7C2;
+                            color: #5D5D5D;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🌿</div>
+                            <div style="font-weight: bold; color: #2E8B57;">Mint Fresh</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Toppings Selection -->
+                <div class="toppings-selection" style="margin-bottom: 30px;">
+                    <h4 style="color: #D8A7B1; margin-bottom: 20px;">
+                        <i class="fas fa-candy-cane"></i> Add Toppings
+                    </h4>
+                    
+                    <div class="toppings-grid" style="
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                        gap: 10px;
+                        margin-bottom: 20px;
+                    ">
+                        <div class="topping-option" onclick="addTopping('cherry')" style="
+                            background: rgba(255, 255, 255, 0.8);
+                            padding: 15px;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            border: 2px solid #FF6B6B;
+                            text-align: center;
+                        ">
+                            <div style="font-size: 1.5rem;">🍒</div>
+                            <div style="font-size: 0.8rem; color: #777;">Cherry(my fav😋🌚)</div>
+                        </div>
+                        
+                        <div class="topping-option" onclick="addTopping('sprinkles')" style="
+                            background: rgba(255, 255, 255, 0.8);
+                            padding: 15px;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            border: 2px solid #FFD166;
+                            text-align: center;
+                        ">
+                            <div style="font-size: 1.5rem;">🍬</div>
+                            <div style="font-size: 0.8rem; color: #777;">Sprinkles</div>
+                        </div>
+                        
+                        <div class="topping-option" onclick="addTopping('choco')" style="
+                            background: rgba(255, 255, 255, 0.8);
+                            padding: 15px;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            border: 2px solid #8B4513;
+                            text-align: center;
+                        ">
+                            <div style="font-size: 1.5rem;">🍫</div>
+                            <div style="font-size: 0.8rem; color: #777;">Choco Chips</div>
+                        </div>
+                        
+                        <div class="topping-option" onclick="addTopping('nuts')" style="
+                            background: rgba(255, 255, 255, 0.8);
+                            padding: 15px;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            border: 2px solid #D2691E;
+                            text-align: center;
+                        ">
+                            <div style="font-size: 1.5rem;">🥜</div>
+                            <div style="font-size: 0.8rem; color: #777;">Nuts</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Current Selection -->
+                <div class="current-selection" style="
+                    background: rgba(255, 182, 193, 0.1);
+                    padding: 20px;
+                    border-radius: 15px;
+                    margin-bottom: 30px;
+                    border: 2px dashed #FFB6C1;
+                ">
+                    <h4 style="color: #FF8E9E; margin-bottom: 10px;">
+                        <i class="fas fa-clipboard-check"></i> Our Ice Cream
+                    </h4>
+                    <div id="iceCreamSelection" style="color: #777;">
+                        Select a flavor and add toppings!
+                    </div>
+                </div>
+                
+                <!-- Actions -->
+                <div class="action-buttons" style="
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
+                    flex-wrap: wrap;
+                ">
+                    <button onclick="createSharedIceCream()" style="
+                        padding: 15px 30px;
+                        background: linear-gradient(135deg, #FFB6C1, #FF8E9E);
+                        border: none;
+                        border-radius: 25px;
+                        color: white;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    ">
+                        <i class="fas fa-heart"></i> Create Our Ice Cream
+                    </button>
+                    
+                    <button onclick="shareIceCreamPromise()" style="
+                        padding: 15px 30px;
+                        background: rgba(255, 255, 255, 0.8);
+                        border: 2px solid #FF8E9E;
+                        border-radius: 25px;
+                        color: #FF8E9E;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    ">
+                        <i class="fas fa-share"></i> Share Promise
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Sweet Messages -->
+            <div class="sweet-messages" style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-top: 40px;
+            ">
+                <div class="message-card" style="
+                    background: rgba(255, 182, 193, 0.1);
+                    padding: 25px;
+                    border-radius: 20px;
+                    border-left: 5px solid #FFB6C1;
+                ">
+                    <div style="color: #FF8E9E; font-size: 2rem; margin-bottom: 15px;">😭</div>
+                    <p style="color: #777; line-height: 1.6;">
+                        "Saanvi, tu kitni pyaari hai! Ek hi ice cream share karenge."
+                    </p>
+                </div>
+                
+                <div class="message-card" style="
+                    background: rgba(176, 224, 230, 0.1);
+                    padding: 25px;
+                    border-radius: 20px;
+                    border-left: 5px solid #B0E0E6;
+                ">
+                    <div style="color: #FF8E9E; font-size: 2rem; margin-bottom: 15px;">💕</div>
+                    <p style="color: #777; line-height: 1.6;">
+                        "Dono ek ice cream se khayenge, ek bite main, ek bite tu. 
+                        Aise sweet moments ke liye main wait kar raha hu."
+                    </p>
+                </div>
+                
+                <div class="message-card" style="
+                    background: rgba(255, 229, 180, 0.1);
+                    padding: 25px;
+                    border-radius: 20px;
+                    border-left: 5px solid #FFE5B4;
+                ">
+                    <div style="color: #FF8E9E; font-size: 2rem; margin-bottom: 15px;">🍦</div>
+                    <p style="color: #777; line-height: 1.6;">
+                        "Ice cream melt ho jayegi, par hamara pyaar kabhi melt nahi hoga. 
+                        Tere saath har bite special hoga."
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Promise Box -->
+            <div class="promise-box" style="
+                margin-top: 40px;
+                padding: 30px;
+                background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 142, 158, 0.2));
+                border-radius: 20px;
+                border: 3px solid #FF8E9E;
+                text-align: center;
+            ">
+                <div style="color: #FF8E9E; font-size: 2.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                
+                <h3 style="color: #D8A7B1; margin-bottom: 15px;">
+                    Our Ice Cream Promise 🤝
+                </h3>
+                
+                <div style="
+                    background: rgba(255, 255, 255, 0.8);
+                    padding: 20px;
+                    border-radius: 15px;
+                    margin: 20px auto;
+                    max-width: 600px;
+                    border: 2px dashed #FFB6C1;
+                ">
+                    <p style="color: #777; line-height: 1.8; font-size: 1.1rem;">
+                        <i class="fas fa-quote-left" style="color: #FF8E9E;"></i>
+                        <strong style="color: #D8A7B1;">"mera tumse promise hai:</strong><br>
+                        Jab hum milenge, tb ek hi ice cream se dono khayenge.
+                        Pehla bite main tujhe dunga, dusra bite tu mujhe degi. 
+                        sara akele ni khana😭 me ro dunga koi naa khaa lena👀
+                        me tujhe dekh kr kaam chla lunga 😋🤭.
+                        Aise hi hum har sweet moment share karenge."
+                        <i class="fas fa-quote-right" style="color: #FF8E9E;"></i>
+                    </p>
+                </div>
+                
+                <div style="display: flex; justify-content: center; gap: 30px; margin-top: 25px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: #FF8E9E;">👨</div>
+                        <div style="color: #777; font-weight: bold;">Sarthak's Signature</div>
+                        <div style="font-family: cursive; color: #D8A7B1; font-size: 1.2rem;">Sarthak 💖</div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: #FF8E9E;">👩</div>
+                        <div style="color: #777; font-weight: bold;">Saanvi's Space</div>
+                        <div style="font-family: cursive; color: #D8A7B1; font-size: 1.2rem;">Waiting for you 😊</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Memory Section -->
+        <div class="memory-section" style="
+            max-width: 800px;
+            margin: 40px auto 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            border: 2px solid #FFD1DC;
+        ">
+            <h4 style="color: #FF8E9E; text-align: center; margin-bottom: 25px;">
+                <i class="fas fa-memory"></i> Our Ice Cream Memories
+            </h4>
+            
+            <div class="memory-stats" style="
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                gap: 20px;
+                margin-bottom: 30px;
+            ">
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; color: #FF8E9E; font-weight: bold;" id="iceCreamsCreated">0</div>
+                    <div style="color: #777;">Ice Creams Created</div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; color: #FFB6C1; font-weight: bold;" id="favoriteFlavor">🍓</div>
+                    <div style="color: #777;">Favorite Flavor</div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; color: #D8BFD8; font-weight: bold;" id="promisesShared">0</div>
+                    <div style="color: #777;">Promises Shared</div>
+                </div>
+            </div>
+            
+            <div class="memory-book" style="
+                background: rgba(255, 248, 231, 0.5);
+                padding: 20px;
+                border-radius: 15px;
+                border: 2px dashed #FFE5B4;
+                max-height: 200px;
+                overflow-y: auto;
+            ">
+                <h5 style="color: #D8A7B1; margin-bottom: 15px;">
+                    <i class="fas fa-book-open"></i> Memory Log
+                </h5>
+                <div id="memoryLog" style="color: #777; font-size: 0.9rem;">
+                    <!-- Memories will be added here -->
+                    <div style="padding: 10px; border-bottom: 1px solid #FFD1DC;">
+                        <i class="fas fa-ice-cream" style="color: #FFB6C1;"></i>
+                        Ready to create our first ice cream memory!
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Final Message -->
+        <div class="final-message" style="
+            max-width: 800px;
+            margin: 40px auto 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(216, 191, 216, 0.2));
+            border-radius: 20px;
+            border: 2px solid #FF8E9E;
+            color: #777;
+            line-height: 1.8;
+        ">
+            <p style="text-align: center;">
+                <i class="fas fa-heart" style="color: #FF8E9E;"></i>
+                "Saanvi, ye ice cream corner hamare sweetest memories ke liye hai. 
+                Ek din zaroor milenge aur ek hi ice cream share karenge. 
+                Tere saath har cheez special lgta hai, chahe wo ek simple ice cream hi kyu na ho. 
+                Main tujhse itna pyaar karta hu ki me khud Kitna bhi soch lu pr pta nhi jr pata.😭💕"
+                <i class="fas fa-heart" style="color: #FF8E9E;"></i>
+            </p>
+            <p style="text-align: right; margin-top: 20px; color: #FF8E9E; font-family: cursive;">
+                - Tera ice cream partner, Sarthak 🍦❤️
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Ice Cream CSS -->
+<style>
+    @keyframes float {
+        0% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+        100% { transform: translateY(0) rotate(0deg); }
+    }
+    
+    @keyframes heartbeat {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.2); }
+    }
+    
+    @keyframes iceCreamSpin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .flavor-option:hover, .topping-option:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    .message-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 142, 158, 0.2);
+    }
+    
+    button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(255, 142, 158, 0.3) !important;
+    }
+    
+    .promise-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px rgba(255, 142, 158, 0.2);
+    }
+    
+    .selected {
+        border-width: 4px !important;
+        box-shadow: 0 0 20px rgba(255, 142, 158, 0.5) !important;
+    }
+</style>
+
+<!-- Ice Cream JavaScript -->
+<script>
+    // Ice Cream Data
+    const iceCreamData = {
+        strawberry: { 
+            color: "#FFD1DC", 
+            border: "#FF8E9E",
+            name: "Strawberry Love",
+            emoji: "🍓",
+            message: "Strawberry ki tarah sweet hai tu meri life mein!"
+        },
+        chocolate: { 
+            color: "#8B4513", 
+            border: "#D2691E",
+            name: "Chocolate Dreams",
+            emoji: "🍫",
+            message: "Chocolate ki tarah deep aur rich hai hamara pyaar!"
+        },
+        vanilla: { 
+            color: "#FFF8E7", 
+            border: "#FFE5B4",
+            name: "Vanilla Kisses",
+            emoji: "🍦",
+            message: "Vanilla ki tarah classic aur pure hai hamara connection!"
+        },
+        mint: { 
+            color: "#B5EAD7", 
+            border: "#98D7C2",
+            name: "Mint Fresh",
+            emoji: "🌿",
+            message: "Mint ki tarah refreshing hai tera presence!"
+        }
+    };
+    
+    const toppingsData = {
+        cherry: { emoji: "🍒", name: "Cherry on Top" },
+        sprinkles: { emoji: "🍬", name: "Rainbow Sprinkles" },
+        choco: { emoji: "🍫", name: "Chocolate Chips" },
+        nuts: { emoji: "🥜", name: "Crunchy Nuts" }
+    };
+    
+    // Current Selection
+    let currentFlavor = null;
+    let currentToppings = [];
+    let iceCreamsCreated = 0;
+    let promisesShared = 0;
+    const flavorStats = {};
+    const memoryLog = [];
+    
+    // Select Ice Cream Flavor
+    function selectIceCreamFlavor(flavor) {
+        currentFlavor = flavor;
+        
+        // Update UI
+        document.querySelectorAll('.flavor-option').forEach(option => {
+            option.classList.remove('selected');
+        });
+        event.target.closest('.flavor-option').classList.add('selected');
+        
+        // Update visual ice cream
+        const scoop = document.getElementById('iceCreamScoop');
+        const data = iceCreamData[flavor];
+        scoop.style.background = data.color;
+        scoop.style.borderColor = data.border;
+        
+        // Update selection text
+        updateSelectionDisplay();
+        
+        // Update flavor stats
+        flavorStats[flavor] = (flavorStats[flavor] || 0) + 1;
+        updateFavoriteFlavor();
+    }
+    
+    // Add Topping
+    function addTopping(topping) {
+        if (!currentFlavor) {
+            showIceCreamMessage("Pehle flavor choose karo na! 🍦");
+            return;
+        }
+        
+        // Toggle topping
+        const index = currentToppings.indexOf(topping);
+        if (index === -1) {
+            if (currentToppings.length >= 3) {
+                showIceCreamMessage("Maximum 3 toppings! 😊");
+                return;
+            }
+            currentToppings.push(topping);
+            event.target.closest('.topping-option').classList.add('selected');
+        } else {
+            currentToppings.splice(index, 1);
+            event.target.closest('.topping-option').classList.remove('selected');
+        }
+        
+        // Add topping to visual ice cream
+        updateToppingsVisual();
+        updateSelectionDisplay();
+    }
+    
+    // Update Toppings Visual
+    function updateToppingsVisual() {
+        const scoop = document.getElementById('iceCreamScoop');
+        let toppingsHTML = '';
+        
+        currentToppings.forEach((topping, index) => {
+            const top = 20 + (index * 20);
+            const left = 30 + (index * 15);
+            toppingsHTML += `
+                <div style="
+                    position: absolute;
+                    top: ${top}px;
+                    left: ${left}px;
+                    font-size: 1.5rem;
+                    z-index: 10;
+                    animation: float ${2 + index}s infinite;
+                ">${toppingsData[topping].emoji}</div>
+            `;
+        });
+        
+        // Add toppings as child elements
+        scoop.innerHTML = toppingsHTML;
+    }
+    
+    // Update Selection Display
+    function updateSelectionDisplay() {
+        let displayText = "";
+        
+        if (currentFlavor) {
+            const flavor = iceCreamData[currentFlavor];
+            displayText = `${flavor.emoji} <strong>${flavor.name}</strong>`;
+            
+            if (currentToppings.length > 0) {
+                displayText += "<br>With: ";
+                displayText += currentToppings.map(t => toppingsData[t].emoji + " " + toppingsData[t].name).join(", ");
+            }
+        } else {
+            displayText = "Select a flavor and add toppings!";
+        }
+        
+        document.getElementById('iceCreamSelection').innerHTML = displayText;
+    }
+    
+    // Create Shared Ice Cream
+    function createSharedIceCream() {
+        if (!currentFlavor) {
+            showIceCreamMessage("Ice cream banane ke liye flavor choose karo! 🍨");
+            return;
+        }
+        
+        const flavor = iceCreamData[currentFlavor];
+        iceCreamsCreated++;
+        
+        // Update counter
+        document.getElementById('iceCreamsCreated').textContent = iceCreamsCreated;
+        
+        // Add to memory log
+        const memory = {
+            date: new Date().toLocaleString('en-IN'),
+            flavor: flavor.name,
+            toppings: currentToppings.map(t => toppingsData[t].name),
+            message: "Ek hi ice cream se khane ka promise!"
+        };
+        memoryLog.unshift(memory);
+        if (memoryLog.length > 5) memoryLog.pop();
+        
+        updateMemoryLog();
+        
+        // Celebration
+        createIceCreamCelebration();
+        
+        // Show success message
+        const message = `🎉 Ice Cream Created!\n\n${flavor.emoji} ${flavor.name}\n${currentToppings.length} toppings added\n\n${flavor.message}\n\nEk hi ice cream se dono khayenge! 😭💕`;
+        showIceCreamMessage(message);
+        
+        // Save to localStorage
+        saveIceCreamData();
+    }
+    
+    // Share Ice Cream Promise
+    function shareIceCreamPromise() {
+        if (!currentFlavor) {
+            showIceCreamMessage("Pehle ice cream banao phir share karo! ❤️");
+            return;
+        }
+        
+        promisesShared++;
+        document.getElementById('promisesShared').textContent = promisesShared;
+        
+        const flavor = iceCreamData[currentFlavor];
+        const shareMessage = `🍦 Promise to Sarthak: "Hum milein to ek hi ${flavor.name} ice cream se dono khayenge!" Chahe ${currentToppings.length} toppings hon ya na hon, par hum ek saath khayenge! 😭💕 #SarthakLovesSaanvi`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: 'Our Ice Cream Promise',
+                text: shareMessage,
+                url: window.location.href
+            });
+        } else {
+            alert(`${shareMessage}\n\nCopy this promise to share with Sarthak!`);
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(shareMessage).then(() => {
+                showIceCreamMessage("Promise copied! Sarthak ko bhejo! 💌");
+            });
+        }
+        
+        saveIceCreamData();
+    }
+    
+    // Update Favorite Flavor
+    function updateFavoriteFlavor() {
+        if (Object.keys(flavorStats).length === 0) return;
+        
+        let favorite = Object.keys(flavorStats)[0];
+        let maxCount = flavorStats[favorite];
+        
+        for (const [flavor, count] of Object.entries(flavorStats)) {
+            if (count > maxCount) {
+                favorite = flavor;
+                maxCount = count;
+            }
+        }
+        
+        document.getElementById('favoriteFlavor').textContent = iceCreamData[favorite].emoji;
+    }
+    
+    // Update Memory Log
+    function updateMemoryLog() {
+        const logContainer = document.getElementById('memoryLog');
+        logContainer.innerHTML = '';
+        
+        memoryLog.forEach((memory, index) => {
+            const logItem = document.createElement('div');
+            logItem.style.cssText = `
+                padding: 10px;
+                border-bottom: 1px solid #FFD1DC;
+                animation: fadeIn ${0.5 + index * 0.1}s;
+            `;
+            
+            const toppingsText = memory.toppings.length > 0 
+                ? `with ${memory.toppings.join(', ')}` 
+                : 'plain';
+            
+            logItem.innerHTML = `
+                <i class="fas fa-ice-cream" style="color: #FFB6C1;"></i>
+                <strong>${memory.flavor}</strong> ${toppingsText}
+                <div style="font-size: 0.8rem; color: #999;">${memory.date}</div>
+            `;
+            
+            logContainer.appendChild(logItem);
+        });
+        
+        if (memoryLog.length === 0) {
+            logContainer.innerHTML = `
+                <div style="padding: 10px; border-bottom: 1px solid #FFD1DC;">
+                    <i class="fas fa-ice-cream" style="color: #FFB6C1;"></i>
+                    Ready to create our first ice cream memory!
+                </div>
+            `;
+        }
+    }
+    
+    // Create Celebration
+    function createIceCreamCelebration() {
+        // Confetti
+        const emojis = ['🍦', '🍨', '🍧', '💕', '😭', '❤️', '🍓', '🍫'];
+        
+        for (let i = 0; i < 30; i++) {
+            const confetti = document.createElement('div');
+            confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            confetti.style.position = 'fixed';
+            confetti.style.fontSize = Math.random() * 25 + 15 + 'px';
+            confetti.style.color = '#FF8E9E';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-50px';
+            confetti.style.zIndex = '9999';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.animation = `iceCreamFall ${Math.random() * 3 + 2}s linear forwards`;
+            
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                if (confetti.parentNode) {
+                    confetti.parentNode.removeChild(confetti);
+                }
+            }, 5000);
+        }
+        
+        // Add fall animation
+        if (!document.querySelector('#iceCreamFallAnim')) {
+            const style = document.createElement('style');
+            style.id = 'iceCreamFallAnim';
+            style.innerHTML = `
+                @keyframes iceCreamFall {
+                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Animate ice cream
+        const scoop = document.getElementById('iceCreamScoop');
+        scoop.style.animation = 'iceCreamSpin 1s ease';
+        setTimeout(() => {
+            scoop.style.animation = '';
+        }, 1000);
+    }
+    
+    // Show Message
+    function showIceCreamMessage(message) {
+        // Remove existing
+        const existing = document.querySelector('.icecream-message');
+        if (existing) existing.remove();
+        
+        // Create message
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'icecream-message';
+        msgDiv.innerHTML = message;
+        msgDiv.style.cssText = `
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, #FFB6C1, #FF8E9E);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(255, 142, 158, 0.4);
+            animation: slideUp 0.5s, fadeOut 0.5s 3s;
+            font-weight: bold;
+            border: 2px solid white;
+            max-width: 300px;
+        `;
+        
+        document.body.appendChild(msgDiv);
+        
+        // Add animations
+        if (!document.querySelector('#msgAnimations')) {
+            const style = document.createElement('style');
+            style.id = 'msgAnimations';
+            style.innerHTML = `
+                @keyframes slideUp {
+                    from { transform: translateY(100%); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Remove after 3.5 seconds
+        setTimeout(() => {
+            if (msgDiv.parentNode) {
+                msgDiv.parentNode.removeChild(msgDiv);
+            }
+        }, 3500);
+    }
+    
+    // Save Data
+    function saveIceCreamData() {
+        const data = {
+            iceCreamsCreated,
+            promisesShared,
+            flavorStats,
+            memoryLog,
+            lastUpdated: new Date().toISOString()
+        };
+        localStorage.setItem('sarthakIceCreamData', JSON.stringify(data));
+    }
+    
+    // Load Data
+    function loadIceCreamData() {
+        const savedData = localStorage.getItem('sarthakIceCreamData');
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            iceCreamsCreated = data.iceCreamsCreated || 0;
+            promisesShared = data.promisesShared || 0;
+            Object.assign(flavorStats, data.flavorStats || {});
+            Array.prototype.push.apply(memoryLog, data.memoryLog || []);
+            
+            // Update displays
+            document.getElementById('iceCreamsCreated').textContent = iceCreamsCreated;
+            document.getElementById('promisesShared').textContent = promisesShared;
+            updateFavoriteFlavor();
+            updateMemoryLog();
+        }
+    }
+    
+    // Initialize
+    function initIceCreamCorner() {
+        loadIceCreamData();
+        
+        // Auto-select strawberry as default
+        setTimeout(() => {
+            selectIceCreamFlavor('strawberry');
+        }, 1000);
+    }
+    
+    // Initialize on page load
+    window.addEventListener('load', initIceCreamCorner);
+</script>                   
 <!-- Love Letter Section -->
         <section class="love-letter-section">
             <h2 class="section-title">My Love Letter to You 💌</h2>
