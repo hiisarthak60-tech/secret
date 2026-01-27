@@ -4267,7 +4267,532 @@
                     <i class="fas fa-hands"></i>  Virtual Hug
                 </button>
             </div>
-            <!-- ==================== -->
+        <!-- Gift Sent History -->
+        <div class="gift-history" style="
+            max-width: 800px;
+            margin: 50px auto 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            border: 3px solid #FFB6C1;
+            box-shadow: 0 20px 50px rgba(255, 182, 193, 0.2);
+        ">
+            <h3 style="color: #D8A7B1; text-align: center; margin-bottom: 25px;">
+                <i class="fas fa-history"></i> Gift Sent History
+            </h3>
+            
+            <div class="history-list" id="giftHistory" style="
+                max-height: 200px;
+                overflow-y: auto;
+                padding-right: 10px;
+            ">
+                <!-- Gift history will be added here dynamically -->
+                <div class="history-item" style="
+                    padding: 15px;
+                    margin-bottom: 10px;
+                    background: rgba(255, 255, 255, 0.7);
+                    border-radius: 10px;
+                    border-left: 4px solid #FFB6C1;
+                    color: #777;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                ">
+                    <div>
+                        <i class="fas fa-gift" style="color: #FFB6C1;"></i>
+                        <span style="margin-left: 10px;">Virtual Rose Bouquet</span>
+                    </div>
+                    <div style="color: #888; font-size: 0.9rem;">
+                        Just now
+                    </div>
+                </div>
+            </div>
+            
+            <div class="history-stats" style="
+                display: flex;
+                justify-content: space-around;
+                margin-top: 25px;
+                padding-top: 25px;
+                border-top: 2px dashed #D8BFD8;
+                color: #777;
+            ">
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; color: #FFB6C1; font-weight: bold;" id="totalGiftsSent">0</div>
+                    <div>Total Gifts Sent</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; color: #D8BFD8; font-weight: bold;" id="giftsThisMonth">0</div>
+                    <div>This Month</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; color: #FFE5B4; font-weight: bold;" id="giftsToday">0</div>
+                    <div>Today</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gift Message -->
+        <div class="gift-message" style="
+            max-width: 800px;
+            margin: 40px auto 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(216, 191, 216, 0.1));
+            border-radius: 20px;
+            border: 2px dashed #FFB6C1;
+            color: #777;
+            font-style: italic;
+            line-height: 1.8;
+        ">
+            <p style="text-align: center;">
+                <i class="fas fa-heart" style="color: #FFB6C1;"></i>
+                "These virtual gifts are just a small token of my love. 
+                The real gift is my heart, which is always with you, no matter the distance."
+                <i class="fas fa-heart" style="color: #FFB6C1;"></i>
+            </p>
+            <p style="text-align: right; margin-top: 15px; color: #D8A7B1;">
+                - Sarthak 💖
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- CSS Animations -->
+<style>
+    @keyframes pulseDot {
+        0%, 100% { opacity: 0.3; transform: scale(0.8); }
+        50% { opacity: 1; transform: scale(1.2); }
+    }
+    
+    @keyframes floatGift {
+        0% { transform: translateY(0) rotate(0deg); }
+        100% { transform: translateY(-15px) rotate(5deg); }
+    }
+    
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 30px 70px rgba(0,0,0,0.15) !important;
+    }
+    
+    .gift-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 35px 80px rgba(0,0,0,0.2) !important;
+    }
+    
+    button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
+    }
+    
+    .gift-icon {
+        transition: all 0.3s;
+    }
+    
+    .gift-card:hover .gift-icon {
+        transform: scale(1.1) rotate(10deg);
+    }
+</style>
+
+<!-- JavaScript for Both Sections -->
+<script>
+    // ===================================
+    // RELATIONSHIP STATS FUNCTIONS
+    // ===================================
+    
+    // Calculate days since July 1, 2025
+    function calculateDaysTogether() {
+        const startDate = new Date('2025-07-01');
+        const today = new Date();
+        const timeDiff = today - startDate;
+        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        return Math.max(daysDiff, 0); // Ensure not negative
+    }
+    
+    // Animate counter
+    function animateCounter(elementId, finalValue, duration = 2000) {
+        const element = document.getElementById(elementId);
+        let startValue = 0;
+        const increment = finalValue / (duration / 20);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= finalValue) {
+                current = finalValue;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current).toLocaleString();
+        }, 20);
+    }
+    
+    // Update all stats
+    function updateStats() {
+        const days = calculateDaysTogether();
+        
+        // Animate days counter
+        animateCounter('daysCount', days);
+        
+        // Calculate other stats based on days
+        const messages = Math.min(days * 55, 10000); // ~55 messages per day
+        const callHours = Math.min(days * 1.66, 300); // ~1.66 hours per day
+        const photos = Math.min(days * 2.77, 500); // ~2.77 photos per day
+        
+        // Animate other counters
+        setTimeout(() => animateCounter('messagesCount', messages), 300);
+        setTimeout(() => animateCounter('callHours', callHours), 600);
+        setTimeout(() => animateCounter('photosCount', photos), 900);
+        
+        // Show notification
+        showNotification(`Stats updated! We've been together for ${days} amazing days! 💖`);
+    }
+    
+    // Initialize stats on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set initial values
+        const days = calculateDaysTogether();
+        document.getElementById('daysCount').textContent = days;
+        document.getElementById('messagesCount').textContent = Math.min(days * 55, 10000);
+        document.getElementById('callHours').textContent = Math.min(days * 1.66, 300);
+        document.getElementById('photosCount').textContent = Math.min(days * 2.77, 500);
+        
+        // Initialize gift stats
+        updateGiftStats();
+    });
+    
+    // ===================================
+    // VIRTUAL GIFTS FUNCTIONS
+    // ===================================
+    
+    let giftsSent = JSON.parse(localStorage.getItem('sarthakGiftsSent')) || [];
+    let giftStats = JSON.parse(localStorage.getItem('sarthakGiftStats')) || {
+        total: 0,
+        thisMonth: 0,
+        today: 0
+    };
+    
+    // Gift definitions
+    const gifts = {
+        1: {
+            name: "Virtual Rose Bouquet",
+            icon: "🌹",
+            color: "#FF69B4",
+            message: "Sending you a bouquet of 12 virtual roses. Each rose represents my love for you in every month of the year. They may be virtual, but my love is real and everlasting. 💖"
+        },
+        2: {
+            name: "Personalized Love Letter",
+            icon: "💌",
+            color: "#D8BFD8",
+            message: "A handwritten love letter just for you. Every word comes straight from my heart. Read it whenever you miss me. 📜❤️"
+        },
+        3: {
+            name: "Song Dedication",
+            icon: "🎵",
+            color: "#FFE5B4",
+            message: "I'm dedicating this song to you. Whenever you hear it, remember that I'm thinking of you and missing you. 🎶💕"
+        },
+        4: {
+            name: "Virtual Chocolate Box",
+            icon: "🍫",
+            color: "#8B4513",
+            message: "A box of sweet virtual chocolates for my sweet Saanvi. May they bring a smile to your face as sweet as you are. 😊🍬"
+        },
+        5: {
+            name: "Virtual Warm Hug",
+            icon: "🤗",
+            color: "#FFB6C1",
+            message: "Sending you the warmest, tightest virtual hug! Wrap your arms around yourself and imagine it's me holding you. 🤗💕"
+        },
+        6: {
+            name: "Custom Gift",
+            icon: "✨",
+            color: "#D8BFD8",
+            message: "A special custom gift made just for you. Because you deserve everything special in the world. ✨💝"
+        }
+    };
+    
+    // Send gift function
+    function sendGift(giftId) {
+        let giftName, giftMessage;
+        
+        if (giftId === 6) {
+            // Custom gift
+            const customName = document.getElementById('customGiftName').value;
+            const customMessage = document.getElementById('customGiftMessage').value;
+            
+            if (!customName.trim() || !customMessage.trim()) {
+                showNotification("Please fill in both gift name and message! 💌");
+                return;
+            }
+            
+            giftName = customName;
+            giftMessage = customMessage;
+        } else {
+            // Predefined gift
+            const gift = gifts[giftId];
+            giftName = gift.name;
+            giftMessage = gift.message;
+            
+            if (giftId === 3) {
+                // Add selected song to message
+                const songSelect = document.getElementById('songSelect');
+                const songName = songSelect.options[songSelect.selectedIndex].text;
+                giftMessage = `I'm dedicating "${songName}" to you. ${gift.message}`;
+            }
+        }
+        
+        // Create gift object
+        const giftObj = {
+            id: Date.now(),
+            giftId: giftId,
+            name: giftName,
+            icon: gifts[giftId]?.icon || "🎁",
+            color: gifts[giftId]?.color || "#FFB6C1",
+            message: giftMessage,
+            timestamp: new Date().toISOString(),
+            date: new Date().toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })
+        };
+        
+        // Add to gifts sent
+        giftsSent.unshift(giftObj);
+        if (giftsSent.length > 10) giftsSent = giftsSent.slice(0, 10);
+        
+        // Update stats
+        updateGiftCounters();
+        
+        // Save to localStorage
+        localStorage.setItem('sarthakGiftsSent', JSON.stringify(giftsSent));
+        localStorage.setItem('sarthakGiftStats', JSON.stringify(giftStats));
+        
+        // Update UI
+        updateGiftHistory();
+        updateGiftStats();
+        
+        // Show success message
+        showGiftAnimation(giftObj);
+        showNotification(`Gift sent successfully! ${giftObj.icon} ${giftObj.name} is on its way to Saanvi! 💝`);
+        
+        // Clear custom gift inputs
+        if (giftId === 6) {
+            document.getElementById('customGiftName').value = '';
+            document.getElementById('customGiftMessage').value = '';
+        }
+    }
+    
+    // Update gift counters
+    function updateGiftCounters() {
+        const today = new Date().toDateString();
+        const thisMonth = new Date().getMonth() + '-' + new Date().getFullYear();
+        
+        // Reset today's count if it's a new day
+        const lastGiftDate = localStorage.getItem('lastGiftDate');
+        if (lastGiftDate !== today) {
+            giftStats.today = 0;
+            localStorage.setItem('lastGiftDate', today);
+        }
+        
+        // Update counters
+        giftStats.total++;
+        giftStats.today++;
+        giftStats.thisMonth = giftsSent.filter(gift => {
+            const giftDate = new Date(gift.timestamp);
+            return giftDate.getMonth() + '-' + giftDate.getFullYear() === thisMonth;
+        }).length;
+    }
+    
+    // Update gift history display
+    function updateGiftHistory() {
+        const historyContainer = document.getElementById('giftHistory');
+        historyContainer.innerHTML = '';
+        
+        giftsSent.forEach((gift, index) => {
+            const historyItem = document.createElement('div');
+            historyItem.className = 'history-item';
+            historyItem.style.cssText = `
+                padding: 15px;
+                margin-bottom: 10px;
+                background: rgba(255, 255, 255, 0.7);
+                border-radius: 10px;
+                border-left: 4px solid ${gift.color};
+                color: #777;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                animation: fadeIn 0.5s ${index * 0.1}s both;
+            `;
+            
+            historyItem.innerHTML = `
+                <div>
+                    <span style="font-size: 1.2rem; margin-right: 10px;">${gift.icon}</span>
+                    <span>${gift.name}</span>
+                </div>
+                <div style="color: #888; font-size: 0.9rem;">
+                    ${gift.date}
+                </div>
+            `;
+            
+            historyContainer.appendChild(historyItem);
+        });
+        
+        // Add fadeIn animation if not present
+        if (!document.querySelector('#fadeInAnimation')) {
+            const style = document.createElement('style');
+            style.id = 'fadeInAnimation';
+            style.innerHTML = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+    
+    // Update gift stats display
+    function updateGiftStats() {
+        document.getElementById('totalGiftsSent').textContent = giftStats.total;
+        document.getElementById('giftsThisMonth').textContent = giftStats.thisMonth;
+        document.getElementById('giftsToday').textContent = giftStats.today;
+    }
+    
+    // Show gift animation
+    function showGiftAnimation(gift) {
+        // Create gift delivery animation
+        const giftAnimation = document.createElement('div');
+        giftAnimation.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            pointer-events: none;
+        `;
+        
+        const giftBox = document.createElement('div');
+        giftBox.style.cssText = `
+            background: linear-gradient(135deg, ${gift.color}, white);
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: giftPop 1s ease-out;
+        `;
+        giftBox.innerHTML = gift.icon;
+        
+        giftAnimation.appendChild(giftBox);
+        document.body.appendChild(giftAnimation);
+        
+        // Add animation style
+        if (!document.querySelector('#giftAnimation')) {
+            const style = document.createElement('style');
+            style.id = 'giftAnimation';
+            style.innerHTML = `
+                @keyframes giftPop {
+                    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+                    70% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+                    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Remove after animation
+        setTimeout(() => {
+            if (giftAnimation.parentNode) {
+                giftAnimation.parentNode.removeChild(giftAnimation);
+            }
+        }, 2000);
+        
+        // Show gift message
+        setTimeout(() => {
+            alert(`💝 Gift Sent Successfully!\n\n${gift.message}\n\nLove, Sarthak 💖`);
+        }, 1000);
+    }
+    
+    // Show notification
+    function showNotification(message) {
+        // Remove existing notification
+        const existing = document.querySelector('.stats-notification');
+        if (existing) existing.remove();
+        
+        // Create notification
+        const notification = document.createElement('div');
+        notification.className = 'stats-notification';
+        notification.innerHTML = message;
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, #FFB6C1, #D8BFD8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
+            animation: slideUp 0.5s, fadeOut 0.5s 2.5s;
+            font-weight: bold;
+            border: 2px solid white;
+            max-width: 300px;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Add animations if not present
+        if (!document.querySelector('#notificationAnimations')) {
+            const style = document.createElement('style');
+            style.id = 'notificationAnimations';
+            style.innerHTML = `
+                @keyframes slideUp {
+                    from { transform: translateY(100%); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 3000);
+    }
+    
+    // Initialize gift system
+    function initGiftSystem() {
+        updateGiftHistory();
+        updateGiftStats();
+        
+        // Set current date as last gift date if not set
+        if (!localStorage.getItem('lastGiftDate')) {
+            localStorage.setItem('lastGiftDate', new Date().toDateString());
+        }
+    }
+    
+    // Initialize on page load
+    window.addEventListener('load', function() {
+        updateStats();
+        initGiftSystem();
+    });
+</script>
+    <!-- ==================== -->
 <!-- KINER JOY SECTION -->
 <!-- ==================== -->
 <section class="kinderjoy-section" style="
@@ -5232,531 +5757,6 @@
     // Initialize on page load
     window.addEventListener('load', initKinderJoy);
 </script>
-        <!-- Gift Sent History -->
-        <div class="gift-history" style="
-            max-width: 800px;
-            margin: 50px auto 0;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 30px;
-            border: 3px solid #FFB6C1;
-            box-shadow: 0 20px 50px rgba(255, 182, 193, 0.2);
-        ">
-            <h3 style="color: #D8A7B1; text-align: center; margin-bottom: 25px;">
-                <i class="fas fa-history"></i> Gift Sent History
-            </h3>
-            
-            <div class="history-list" id="giftHistory" style="
-                max-height: 200px;
-                overflow-y: auto;
-                padding-right: 10px;
-            ">
-                <!-- Gift history will be added here dynamically -->
-                <div class="history-item" style="
-                    padding: 15px;
-                    margin-bottom: 10px;
-                    background: rgba(255, 255, 255, 0.7);
-                    border-radius: 10px;
-                    border-left: 4px solid #FFB6C1;
-                    color: #777;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                ">
-                    <div>
-                        <i class="fas fa-gift" style="color: #FFB6C1;"></i>
-                        <span style="margin-left: 10px;">Virtual Rose Bouquet</span>
-                    </div>
-                    <div style="color: #888; font-size: 0.9rem;">
-                        Just now
-                    </div>
-                </div>
-            </div>
-            
-            <div class="history-stats" style="
-                display: flex;
-                justify-content: space-around;
-                margin-top: 25px;
-                padding-top: 25px;
-                border-top: 2px dashed #D8BFD8;
-                color: #777;
-            ">
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; color: #FFB6C1; font-weight: bold;" id="totalGiftsSent">0</div>
-                    <div>Total Gifts Sent</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; color: #D8BFD8; font-weight: bold;" id="giftsThisMonth">0</div>
-                    <div>This Month</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; color: #FFE5B4; font-weight: bold;" id="giftsToday">0</div>
-                    <div>Today</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Gift Message -->
-        <div class="gift-message" style="
-            max-width: 800px;
-            margin: 40px auto 0;
-            padding: 25px;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(216, 191, 216, 0.1));
-            border-radius: 20px;
-            border: 2px dashed #FFB6C1;
-            color: #777;
-            font-style: italic;
-            line-height: 1.8;
-        ">
-            <p style="text-align: center;">
-                <i class="fas fa-heart" style="color: #FFB6C1;"></i>
-                "These virtual gifts are just a small token of my love. 
-                The real gift is my heart, which is always with you, no matter the distance."
-                <i class="fas fa-heart" style="color: #FFB6C1;"></i>
-            </p>
-            <p style="text-align: right; margin-top: 15px; color: #D8A7B1;">
-                - Sarthak 💖
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- CSS Animations -->
-<style>
-    @keyframes pulseDot {
-        0%, 100% { opacity: 0.3; transform: scale(0.8); }
-        50% { opacity: 1; transform: scale(1.2); }
-    }
-    
-    @keyframes floatGift {
-        0% { transform: translateY(0) rotate(0deg); }
-        100% { transform: translateY(-15px) rotate(5deg); }
-    }
-    
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 100% 50%; }
-    }
-    
-    .stat-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 30px 70px rgba(0,0,0,0.15) !important;
-    }
-    
-    .gift-card:hover {
-        transform: translateY(-15px) scale(1.02);
-        box-shadow: 0 35px 80px rgba(0,0,0,0.2) !important;
-    }
-    
-    button:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
-    }
-    
-    .gift-icon {
-        transition: all 0.3s;
-    }
-    
-    .gift-card:hover .gift-icon {
-        transform: scale(1.1) rotate(10deg);
-    }
-</style>
-
-<!-- JavaScript for Both Sections -->
-<script>
-    // ===================================
-    // RELATIONSHIP STATS FUNCTIONS
-    // ===================================
-    
-    // Calculate days since July 1, 2025
-    function calculateDaysTogether() {
-        const startDate = new Date('2025-07-01');
-        const today = new Date();
-        const timeDiff = today - startDate;
-        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-        return Math.max(daysDiff, 0); // Ensure not negative
-    }
-    
-    // Animate counter
-    function animateCounter(elementId, finalValue, duration = 2000) {
-        const element = document.getElementById(elementId);
-        let startValue = 0;
-        const increment = finalValue / (duration / 20);
-        let current = 0;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= finalValue) {
-                current = finalValue;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current).toLocaleString();
-        }, 20);
-    }
-    
-    // Update all stats
-    function updateStats() {
-        const days = calculateDaysTogether();
-        
-        // Animate days counter
-        animateCounter('daysCount', days);
-        
-        // Calculate other stats based on days
-        const messages = Math.min(days * 55, 10000); // ~55 messages per day
-        const callHours = Math.min(days * 1.66, 300); // ~1.66 hours per day
-        const photos = Math.min(days * 2.77, 500); // ~2.77 photos per day
-        
-        // Animate other counters
-        setTimeout(() => animateCounter('messagesCount', messages), 300);
-        setTimeout(() => animateCounter('callHours', callHours), 600);
-        setTimeout(() => animateCounter('photosCount', photos), 900);
-        
-        // Show notification
-        showNotification(`Stats updated! We've been together for ${days} amazing days! 💖`);
-    }
-    
-    // Initialize stats on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        // Set initial values
-        const days = calculateDaysTogether();
-        document.getElementById('daysCount').textContent = days;
-        document.getElementById('messagesCount').textContent = Math.min(days * 55, 10000);
-        document.getElementById('callHours').textContent = Math.min(days * 1.66, 300);
-        document.getElementById('photosCount').textContent = Math.min(days * 2.77, 500);
-        
-        // Initialize gift stats
-        updateGiftStats();
-    });
-    
-    // ===================================
-    // VIRTUAL GIFTS FUNCTIONS
-    // ===================================
-    
-    let giftsSent = JSON.parse(localStorage.getItem('sarthakGiftsSent')) || [];
-    let giftStats = JSON.parse(localStorage.getItem('sarthakGiftStats')) || {
-        total: 0,
-        thisMonth: 0,
-        today: 0
-    };
-    
-    // Gift definitions
-    const gifts = {
-        1: {
-            name: "Virtual Rose Bouquet",
-            icon: "🌹",
-            color: "#FF69B4",
-            message: "Sending you a bouquet of 12 virtual roses. Each rose represents my love for you in every month of the year. They may be virtual, but my love is real and everlasting. 💖"
-        },
-        2: {
-            name: "Personalized Love Letter",
-            icon: "💌",
-            color: "#D8BFD8",
-            message: "A handwritten love letter just for you. Every word comes straight from my heart. Read it whenever you miss me. 📜❤️"
-        },
-        3: {
-            name: "Song Dedication",
-            icon: "🎵",
-            color: "#FFE5B4",
-            message: "I'm dedicating this song to you. Whenever you hear it, remember that I'm thinking of you and missing you. 🎶💕"
-        },
-        4: {
-            name: "Virtual Chocolate Box",
-            icon: "🍫",
-            color: "#8B4513",
-            message: "A box of sweet virtual chocolates for my sweet Saanvi. May they bring a smile to your face as sweet as you are. 😊🍬"
-        },
-        5: {
-            name: "Virtual Warm Hug",
-            icon: "🤗",
-            color: "#FFB6C1",
-            message: "Sending you the warmest, tightest virtual hug! Wrap your arms around yourself and imagine it's me holding you. 🤗💕"
-        },
-        6: {
-            name: "Custom Gift",
-            icon: "✨",
-            color: "#D8BFD8",
-            message: "A special custom gift made just for you. Because you deserve everything special in the world. ✨💝"
-        }
-    };
-    
-    // Send gift function
-    function sendGift(giftId) {
-        let giftName, giftMessage;
-        
-        if (giftId === 6) {
-            // Custom gift
-            const customName = document.getElementById('customGiftName').value;
-            const customMessage = document.getElementById('customGiftMessage').value;
-            
-            if (!customName.trim() || !customMessage.trim()) {
-                showNotification("Please fill in both gift name and message! 💌");
-                return;
-            }
-            
-            giftName = customName;
-            giftMessage = customMessage;
-        } else {
-            // Predefined gift
-            const gift = gifts[giftId];
-            giftName = gift.name;
-            giftMessage = gift.message;
-            
-            if (giftId === 3) {
-                // Add selected song to message
-                const songSelect = document.getElementById('songSelect');
-                const songName = songSelect.options[songSelect.selectedIndex].text;
-                giftMessage = `I'm dedicating "${songName}" to you. ${gift.message}`;
-            }
-        }
-        
-        // Create gift object
-        const giftObj = {
-            id: Date.now(),
-            giftId: giftId,
-            name: giftName,
-            icon: gifts[giftId]?.icon || "🎁",
-            color: gifts[giftId]?.color || "#FFB6C1",
-            message: giftMessage,
-            timestamp: new Date().toISOString(),
-            date: new Date().toLocaleDateString('en-IN', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            })
-        };
-        
-        // Add to gifts sent
-        giftsSent.unshift(giftObj);
-        if (giftsSent.length > 10) giftsSent = giftsSent.slice(0, 10);
-        
-        // Update stats
-        updateGiftCounters();
-        
-        // Save to localStorage
-        localStorage.setItem('sarthakGiftsSent', JSON.stringify(giftsSent));
-        localStorage.setItem('sarthakGiftStats', JSON.stringify(giftStats));
-        
-        // Update UI
-        updateGiftHistory();
-        updateGiftStats();
-        
-        // Show success message
-        showGiftAnimation(giftObj);
-        showNotification(`Gift sent successfully! ${giftObj.icon} ${giftObj.name} is on its way to Saanvi! 💝`);
-        
-        // Clear custom gift inputs
-        if (giftId === 6) {
-            document.getElementById('customGiftName').value = '';
-            document.getElementById('customGiftMessage').value = '';
-        }
-    }
-    
-    // Update gift counters
-    function updateGiftCounters() {
-        const today = new Date().toDateString();
-        const thisMonth = new Date().getMonth() + '-' + new Date().getFullYear();
-        
-        // Reset today's count if it's a new day
-        const lastGiftDate = localStorage.getItem('lastGiftDate');
-        if (lastGiftDate !== today) {
-            giftStats.today = 0;
-            localStorage.setItem('lastGiftDate', today);
-        }
-        
-        // Update counters
-        giftStats.total++;
-        giftStats.today++;
-        giftStats.thisMonth = giftsSent.filter(gift => {
-            const giftDate = new Date(gift.timestamp);
-            return giftDate.getMonth() + '-' + giftDate.getFullYear() === thisMonth;
-        }).length;
-    }
-    
-    // Update gift history display
-    function updateGiftHistory() {
-        const historyContainer = document.getElementById('giftHistory');
-        historyContainer.innerHTML = '';
-        
-        giftsSent.forEach((gift, index) => {
-            const historyItem = document.createElement('div');
-            historyItem.className = 'history-item';
-            historyItem.style.cssText = `
-                padding: 15px;
-                margin-bottom: 10px;
-                background: rgba(255, 255, 255, 0.7);
-                border-radius: 10px;
-                border-left: 4px solid ${gift.color};
-                color: #777;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                animation: fadeIn 0.5s ${index * 0.1}s both;
-            `;
-            
-            historyItem.innerHTML = `
-                <div>
-                    <span style="font-size: 1.2rem; margin-right: 10px;">${gift.icon}</span>
-                    <span>${gift.name}</span>
-                </div>
-                <div style="color: #888; font-size: 0.9rem;">
-                    ${gift.date}
-                </div>
-            `;
-            
-            historyContainer.appendChild(historyItem);
-        });
-        
-        // Add fadeIn animation if not present
-        if (!document.querySelector('#fadeInAnimation')) {
-            const style = document.createElement('style');
-            style.id = 'fadeInAnimation';
-            style.innerHTML = `
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-    }
-    
-    // Update gift stats display
-    function updateGiftStats() {
-        document.getElementById('totalGiftsSent').textContent = giftStats.total;
-        document.getElementById('giftsThisMonth').textContent = giftStats.thisMonth;
-        document.getElementById('giftsToday').textContent = giftStats.today;
-    }
-    
-    // Show gift animation
-    function showGiftAnimation(gift) {
-        // Create gift delivery animation
-        const giftAnimation = document.createElement('div');
-        giftAnimation.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            pointer-events: none;
-        `;
-        
-        const giftBox = document.createElement('div');
-        giftBox.style.cssText = `
-            background: linear-gradient(135deg, ${gift.color}, white);
-            width: 150px;
-            height: 150px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: giftPop 1s ease-out;
-        `;
-        giftBox.innerHTML = gift.icon;
-        
-        giftAnimation.appendChild(giftBox);
-        document.body.appendChild(giftAnimation);
-        
-        // Add animation style
-        if (!document.querySelector('#giftAnimation')) {
-            const style = document.createElement('style');
-            style.id = 'giftAnimation';
-            style.innerHTML = `
-                @keyframes giftPop {
-                    0% { transform: scale(0) rotate(0deg); opacity: 0; }
-                    70% { transform: scale(1.2) rotate(10deg); opacity: 1; }
-                    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Remove after animation
-        setTimeout(() => {
-            if (giftAnimation.parentNode) {
-                giftAnimation.parentNode.removeChild(giftAnimation);
-            }
-        }, 2000);
-        
-        // Show gift message
-        setTimeout(() => {
-            alert(`💝 Gift Sent Successfully!\n\n${gift.message}\n\nLove, Sarthak 💖`);
-        }, 1000);
-    }
-    
-    // Show notification
-    function showNotification(message) {
-        // Remove existing notification
-        const existing = document.querySelector('.stats-notification');
-        if (existing) existing.remove();
-        
-        // Create notification
-        const notification = document.createElement('div');
-        notification.className = 'stats-notification';
-        notification.innerHTML = message;
-        notification.style.cssText = `
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            background: linear-gradient(135deg, #FFB6C1, #D8BFD8);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            z-index: 9999;
-            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
-            animation: slideUp 0.5s, fadeOut 0.5s 2.5s;
-            font-weight: bold;
-            border: 2px solid white;
-            max-width: 300px;
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Add animations if not present
-        if (!document.querySelector('#notificationAnimations')) {
-            const style = document.createElement('style');
-            style.id = 'notificationAnimations';
-            style.innerHTML = `
-                @keyframes slideUp {
-                    from { transform: translateY(100%); opacity: 0; }
-                    to { transform: translateY(0); opacity: 1; }
-                }
-                @keyframes fadeOut {
-                    from { opacity: 1; }
-                    to { opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Remove after 3 seconds
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 3000);
-    }
-    
-    // Initialize gift system
-    function initGiftSystem() {
-        updateGiftHistory();
-        updateGiftStats();
-        
-        // Set current date as last gift date if not set
-        if (!localStorage.getItem('lastGiftDate')) {
-            localStorage.setItem('lastGiftDate', new Date().toDateString());
-        }
-    }
-    
-    // Initialize on page load
-    window.addEventListener('load', function() {
-        updateStats();
-        initGiftSystem();
-    });
-</script>
     <!-- ==================== -->
 <!-- ICE CREAM CORNER SECTION -->
 <!-- ==================== -->
@@ -6188,7 +6188,7 @@
                     align-items: center;
                     gap: 10px;
                 ">
-                    <i class="fas fa-share"></i> Share with Saanvi
+                    <i class="fas fa-share"></i> Share with Sarthak
                 </button>
                 
                 <button onclick="resetIceCream()" style="
