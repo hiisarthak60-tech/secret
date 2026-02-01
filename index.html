@@ -115,7 +115,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
         }
         
         .heart {
@@ -6919,32 +6919,6 @@
         });
         
         // ====================
-        // FLOATING HEARTS
-        // ====================
-        function createFloatingHearts() {
-            const container = document.getElementById('heartsContainer');
-            for (let i = 0; i < 50; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.innerHTML = '❤️';
-                
-                const size = Math.random() * 30 + 20;
-                const left = Math.random() * 100;
-                const duration = Math.random() * 20 + 10;
-                const delay = Math.random() * 5;
-                const color = `hsl(${Math.random() * 60 + 320}, 70%, 80%)`; // Pastel colors
-                
-                heart.style.left = `${left}%`;
-                heart.style.fontSize = `${size}px`;
-                heart.style.color = color;
-                heart.style.animationDuration = `${duration}s`;
-                heart.style.animationDelay = `${delay}s`;
-                
-                container.appendChild(heart);
-            }
-        }
-        
-        // ====================
         // MUSIC PLAYER
         // ====================
         let isPlaying = false;
@@ -7176,35 +7150,29 @@
             }
         };
     </script>
-    <!-- Virtual Date Section yahin end hota hai -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-    <!-- ❤️ FLOATING HEARTS SCRIPT START ❤️ -->
-    <script>
         const heartsContainer = document.getElementById("heartsContainer");
+        if (!heartsContainer) return;
 
-        function createHeart() {
+        setInterval(function () {
             const heart = document.createElement("i");
-            heart.classList.add("fas", "fa-heart", "heart");
-
-            const size = Math.random() * 20 + 10;
-            heart.style.fontSize = size + "px";
+            heart.className = "fas fa-heart heart";
 
             heart.style.left = Math.random() * 100 + "vw";
-
-            const duration = Math.random() * 5 + 5;
-            heart.style.animationDuration = duration + "s";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+            heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
 
             heartsContainer.appendChild(heart);
 
-            setTimeout(() => {
+            setTimeout(function () {
                 heart.remove();
-            }, duration * 1000);
-        }
+            }, 10000);
 
-        setInterval(createHeart, 300);
-    </script>
-    <!-- ❤️ FLOATING HEARTS SCRIPT END ❤️ -->
+        }, 300);
 
-
+    });
+</script>
 </body>
 </html>
