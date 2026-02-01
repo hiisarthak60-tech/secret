@@ -7176,5 +7176,35 @@
             }
         };
     </script>
+    <!-- Virtual Date Section yahin end hota hai -->
+
+    <!-- ❤️ FLOATING HEARTS SCRIPT START ❤️ -->
+    <script>
+        const heartsContainer = document.getElementById("heartsContainer");
+
+        function createHeart() {
+            const heart = document.createElement("i");
+            heart.classList.add("fas", "fa-heart", "heart");
+
+            const size = Math.random() * 20 + 10;
+            heart.style.fontSize = size + "px";
+
+            heart.style.left = Math.random() * 100 + "vw";
+
+            const duration = Math.random() * 5 + 5;
+            heart.style.animationDuration = duration + "s";
+
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+    <!-- ❤️ FLOATING HEARTS SCRIPT END ❤️ -->
+
+
 </body>
 </html>
