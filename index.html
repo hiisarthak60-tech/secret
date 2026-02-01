@@ -665,6 +665,7 @@
     </style>
 </head>
 <body>
+    <div id="floating-hearts-container"></div>
     <!-- Password Screen -->
     <div class="password-screen" id="passwordScreen">
         <div class="password-container">
@@ -1432,6 +1433,31 @@
         background: rgba(255, 182, 193, 0.3) !important;
         border-color: #FFB6C1 !important;
     }
+#floating-hearts-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -50px;
+    color: #ff6fae;
+    font-size: 20px;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+    }
+}
 </style>
 
 <!-- Quiz Section JavaScript -->
@@ -7173,6 +7199,25 @@
         }, 300);
 
     });
+</script>
+<script>
+    const container = document.getElementById("floating-hearts-container");
+
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        heart.style.animationDuration = Math.random() * 4 + 6 + "s";
+
+        container.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 10000);
+    }, 250);
 </script>
 </body>
 </html>
