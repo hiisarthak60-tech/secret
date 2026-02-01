@@ -3785,7 +3785,7 @@
                     margin: 20px 0;
                     font-family: 'Courier New', monospace;
                 ">
-                    <span id="callminutes">30+</span>
+                    <span id="callminutes">50+</span>
                 </div>
                 
                 <div class="stat-detail" style="
@@ -3835,7 +3835,7 @@
                     margin: 20px 0;
                     font-family: 'Courier New', monospace;
                 ">
-                    <span id="photosCount">1000</span>
+                    <span id="photosCount">1000+</span>
                 </div>
                 
                 <div class="stat-detail" style="
@@ -4442,9 +4442,9 @@
         const photos = Math.min(days * 2.77, 500); // ~2.77 photos per day
         
         // Animate other counters
-        setTimeout(() => animateCounter('messagesCount', messages), 300);
-        setTimeout(() => animateCounter('callHours', callHours), 600);
-        setTimeout(() => animateCounter('photosCount', photos), 900);
+        setTimeout(() => animateCounter('messagesCount', messages), 500+);
+        setTimeout(() => animateCounter('callHours', callHours), 50+);
+        setTimeout(() => animateCounter('photosCount', photos), 1000+);
         
         // Show notification
         showNotification(`Stats updated! We've been together for ${days} amazing days! 💖`);
