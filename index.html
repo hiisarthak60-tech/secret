@@ -3654,7 +3654,7 @@
                     margin: 20px 0;
                     font-family: 'Courier New', monospace;
                 ">
-                    <span id="daysCount">000</span>
+                    <span id="daysCount">228</span>
                 </div>
                 
                 <div class="stat-detail" style="
@@ -4437,7 +4437,7 @@
         animateCounter('daysCount', days);
         
         // Calculate other stats based on days
-        const messages = Math.min(days * 55, 10000); // ~55 messages per day
+        const messages = Math.min(days * 500, 10000); // ~55 messages per day
         const callHours = Math.min(days * 1.66, 300); // ~1.66 hours per day
         const photos = Math.min(days * 2.77, 500); // ~2.77 photos per day
         
